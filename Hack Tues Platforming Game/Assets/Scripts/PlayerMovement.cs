@@ -12,9 +12,14 @@ public class PlayerMovement : MonoBehaviour
     private float move;
     //GroundCheck
     public Transform GroundCheckCollider;
-    public bool isGrounded = false;
-    const float GroundCheckRadius = 2f;
+
+    private bool isGrounded;
+    public Transform groundCheckPos;
+    public float groundCheckRadius;
     public LayerMask GroundLayer;
+
+    public int maxHealth;
+    int currentHealth;
     /*
     private bool isVoid = false;
     public LayerMask Void;*/
@@ -22,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rigbod = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
     }
     /*void Restart()
     {
@@ -40,21 +46,11 @@ public class PlayerMovement : MonoBehaviour
     }
     */
 
-    void GroundCheck()
-    {
-        isGrounded = false;
-
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheckCollider.position, GroundCheckRadius, GroundLayer);
-        if (colliders.Length > 0)
-            isGrounded = true;
-        animator.SetBool("IsGrounded", isGrounded);
-    }
 
     // Update is called once per frame
     void Update()
     {
         // Restart();
-        GroundCheck();
         //Physics2D.IgnoreLayerCollision(7, 11);
         move = Input.GetAxis("Horizontal");
         animator.SetFloat("Running", Mathf.Abs(move));
@@ -70,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
         transform.localScale = chScale;
         rigbod.velocity = new Vector2(move * MovementSpeed, rigbod.velocity.y);
+        isGrounded = Physics2D.OverlapCircle(groundCheckPos.position, groundCheckRadius, GroundLayer);
         if (Input.GetButtonDown("Jump") && isGrounded == true)
         {
             rigbod.velocity = new Vector2(rigbod.velocity.x, JumpForce);
@@ -79,6 +76,8 @@ public class PlayerMovement : MonoBehaviour
         {
             rigbod.velocity = new Vector2(rigbod.velocity.x, rigbod.velocity.y * .5f);
         }
+        
+        /*
         if (rigbod.velocity.y < -0.01f)
         {
             //animator.SetBool("Jump", false);
@@ -87,5 +86,10 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("Jump", true);
         }*/
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
     }
 }
