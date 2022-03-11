@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -93,5 +94,10 @@ public class PlayerMovement : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+    }
+
+    public void ChangeScene(int sceneNumber)
+    {
+        SceneManager.LoadScene(sceneNumber);
     }
 }
