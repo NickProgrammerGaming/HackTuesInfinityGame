@@ -9,12 +9,6 @@ public class PlayerShooting : MonoBehaviour
     public float projectileSpeed;
     public GameObject laserPrefab;
     public Transform shootPoint;
-
-    void Start()
-    {
-        
-    }
-
    
     void Update()
     {
