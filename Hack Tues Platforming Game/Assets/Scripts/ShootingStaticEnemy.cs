@@ -47,6 +47,15 @@ public class ShootingStaticEnemy : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Player")
+        {
+            PlayerMovement player = collision.transform.GetComponent<PlayerMovement>();
+            player.TakeDamage(1);
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
