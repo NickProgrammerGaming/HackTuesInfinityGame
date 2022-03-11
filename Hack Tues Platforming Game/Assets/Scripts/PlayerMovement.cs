@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     //GroundCheck
     public Transform GroundCheckCollider;
     public bool isGrounded = false;
-    const float GroundCheckRadius = 1f;
+    const float GroundCheckRadius = 2f;
     public LayerMask GroundLayer;
     /*
     private bool isVoid = false;
@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
 
         transform.localScale = chScale;
         rigbod.velocity = new Vector2(move * MovementSpeed, rigbod.velocity.y);
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded == true)
         {
             rigbod.velocity = new Vector2(rigbod.velocity.x, JumpForce);
 
@@ -79,11 +79,11 @@ public class PlayerMovement : MonoBehaviour
         {
             rigbod.velocity = new Vector2(rigbod.velocity.x, rigbod.velocity.y * .5f);
         }
-        /*if (rigbod.velocity.y < -0.1f)
+        if (rigbod.velocity.y < -0.01f)
         {
-            animator.SetBool("Jump", false);
+            //animator.SetBool("Jump", false);
         }
-        else if (rigbod.velocity.y > 0.1f)
+        /*else if (rigbod.velocity.y > 0.1f)
         {
             animator.SetBool("Jump", true);
         }*/
