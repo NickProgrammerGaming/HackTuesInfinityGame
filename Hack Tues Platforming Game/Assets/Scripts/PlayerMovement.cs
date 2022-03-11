@@ -21,37 +21,58 @@ public class PlayerMovement : MonoBehaviour
 
     public int maxHealth;
     int currentHealth;
-    /*
+    
     private bool isVoid = false;
-    public LayerMask Void;*/
+    public LayerMask Void;
+
+    private bool isSpike = false;
+    public LayerMask Spikes;
     // Start is called before the first frame update
     void Start()
     {
         rigbod = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
     }
-    /*void Restart()
+    void Restart()
     {
         isVoid = false;
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheckCollider.position, GroundCheckRadius, Void);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheckCollider.position, groundCheckRadius, Void);
         if (colliders.Length > 0)
             isVoid = true;
         Vector3 Coor = transform.localPosition;
         if (isVoid)
         {
-            Coor.y = 6;
-            Coor.x = -8;
+            Coor.y = 1;
+            Coor.x = -1;
             rigbod.velocity = new Vector2(rigbod.velocity.x, 0);
         }
         transform.localPosition = Coor;
     }
-    */
+
+    void Spike_hit()
+    {
+        isSpike = false;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheckCollider.position, groundCheckRadius, Spikes);
+        if (colliders.Length > 0)
+            isSpike = true;
+        Vector3 Coor = transform.localPosition;
+        if (isSpike)
+        {
+            Coor.y = 1;
+            Coor.x = -1;
+            rigbod.velocity = new Vector2(rigbod.velocity.x, 0);
+            transform.localPosition = Coor;
+        }
+
+    }
+    
 
 
     // Update is called once per frame
     void Update()
     {
-        // Restart();
+        Spike_hit();
+        Restart();
         //Physics2D.IgnoreLayerCollision(7, 11);
         move = Input.GetAxis("Horizontal");
         animator.SetFloat("Running", Mathf.Abs(move));
