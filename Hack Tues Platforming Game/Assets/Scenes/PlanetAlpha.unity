@@ -53359,6 +53359,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!95 &21719983 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3388124890462425542, guid: cf33f28f02312f245b2290a9f7e8b6d9, type: 3}
+  m_PrefabInstance: {fileID: 515157694}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &29619994
 GameObject:
   m_ObjectHideFlags: 0
@@ -53726,9 +53731,9 @@ PlayableDirector:
   - key: {fileID: -8112233747361586614, guid: f54d14454d8eb0d458c4775440d59113, type: 2}
     value: {fileID: 608313932}
   - key: {fileID: -5281708127444542104, guid: f54d14454d8eb0d458c4775440d59113, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 21719983}
   - key: {fileID: 3741945716795134530, guid: f54d14454d8eb0d458c4775440d59113, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 21719983}
   m_ExposedReferences:
     m_References:
     - bf6e929df99e6094d84807e1660a20e5: {fileID: 0}
@@ -53862,11 +53867,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3388124890462425540, guid: cf33f28f02312f245b2290a9f7e8b6d9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.59
+      value: -1.58
       objectReference: {fileID: 0}
     - target: {fileID: 3388124890462425540, guid: cf33f28f02312f245b2290a9f7e8b6d9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.921
+      value: 2.02
       objectReference: {fileID: 0}
     - target: {fileID: 3388124890462425540, guid: cf33f28f02312f245b2290a9f7e8b6d9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -54046,7 +54051,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 608313928}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.59, y: 0.921, z: -10}
+  m_LocalPosition: {x: -1.58, y: 2.02, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 640790454}
@@ -54387,7 +54392,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.2343903}
+  m_Offset: {x: 0.18157291, y: 1.2343903}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -54398,7 +54403,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 3.4687805}
+  m_Size: {x: 4.164564, y: 3.4687805}
   m_EdgeRadius: 0
 --- !u!4 &902053371
 Transform:
