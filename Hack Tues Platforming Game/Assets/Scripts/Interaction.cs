@@ -8,20 +8,16 @@ public class Interaction : MonoBehaviour
 
     bool inRange = false;
     public UnityEvent interactEvent;
+    public bool canInteract = true;
 
-    void Start()
-    {
-        
-    }
-
-    
     void Update()
     {
-        if(inRange)
+        if(inRange && canInteract)
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
                 interactEvent.Invoke();
+                canInteract = false;
             }
         }
     }

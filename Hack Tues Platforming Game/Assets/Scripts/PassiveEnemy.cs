@@ -16,6 +16,8 @@ public class PassiveEnemy : MonoBehaviour
     public Collider2D bodyCollider;
     bool patrol;
     bool turn;
+    public float damageCooldown;
+    float nextTimeToAttack;
 
 
     void Start()
@@ -42,12 +44,20 @@ public class PassiveEnemy : MonoBehaviour
             rb.velocity = new Vector3(speed * Time.fixedDeltaTime, rb.velocity.y);
         }
         
+        if(currentHealth <= 0)
+        {
+            Die();
+        }
     }
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
     }
 
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
     void Flip()
     {
         patrol = false;
@@ -62,7 +72,23 @@ public class PassiveEnemy : MonoBehaviour
         {
             PlayerMovement player = GameObject.Find("Player").GetComponent<PlayerMovement>();
             player.TakeDamage(damage);
+            nextTimeToAttack = Time.time + 1f / damageCooldown;
         }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Player" && nextTimeToAttack < Time.time)
+        {
+            PlayerMovement player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+            player.TakeDamage(damage);
+            nextTimeToAttack = Time.time + 1f / damageCooldown;
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(groundDetect.position, groundDistance);
     }
 
 
