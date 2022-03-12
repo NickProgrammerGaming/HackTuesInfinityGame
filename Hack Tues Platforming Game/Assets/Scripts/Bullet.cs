@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
             {
                 PassiveEnemy pEnemy = collision.gameObject.GetComponent<PassiveEnemy>();
                 ShootingStaticEnemy sEnemy = collision.gameObject.GetComponent<ShootingStaticEnemy>();
-                //3rd enemy
+                MeleeEnemy mEnemy = collision.gameObject.GetComponent<MeleeEnemy>();
 
                 if (pEnemy != null)
                 {
@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
                 }
                 else
                 {
-                    //3rd enemy
+                    mEnemy.TakeDamage(damage);
                 }
 
             }

@@ -28,11 +28,14 @@ public class PlayerMovement : MonoBehaviour
 
     public LayerMask checkpointMask;
 
+    public Healthbar playerHealthbar;
+
     // Start is called before the first frame update
     void Start()
     {
         rigbod = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
+        playerHealthbar.SetMaxHealth(maxHealth);
     }
     
 
@@ -113,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        playerHealthbar.SetHealth(currentHealth);
     }
 
     public void ChangeScene(int sceneNumber)

@@ -34,6 +34,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3388124891194747790}
+  - {fileID: 3388124890642256711}
   - {fileID: 5598153598679807993}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -183,6 +184,7 @@ MonoBehaviour:
   checkpointMask:
     serializedVersion: 2
     m_Bits: 16384
+  playerHealthbar: {fileID: 0}
 --- !u!50 &3388124890462425545
 Rigidbody2D:
   serializedVersion: 4
@@ -228,11 +230,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3388124890642256710}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.257, y: 0.065, z: 0}
+  m_LocalPosition: {x: 0.553, y: -0.11800003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5598153598679807993}
-  m_RootOrder: 0
+  m_Father: {fileID: 3388124890462425540}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3388124891194747789
 GameObject:
@@ -319,10 +321,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.296, y: -0.183, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 3388124890642256711}
+  m_Children: []
   m_Father: {fileID: 3388124890462425540}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &799668873094186181
 SpriteRenderer:
