@@ -5,13 +5,29 @@ using UnityEngine;
 public class BossEnable : MonoBehaviour
 {
     public GameObject boss;
+    public GameObject bossDoors;
+
+    private void Update()
+    {
+        if(boss == null)
+        {
+            bossDoors.SetActive(false);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.transform.tag == "Player")
         {
-            boss.SetActive(true);
-            Destroy(gameObject);
+            if(boss != null)
+            {
+                boss.SetActive(true);
+            }
+            
+            if(bossDoors != null)
+            {
+                bossDoors.SetActive(true);
+            }
         }
     }
 }

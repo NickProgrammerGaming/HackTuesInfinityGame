@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PassiveEnemy : MonoBehaviour
 {
+    public new string name;
     public int damage;
     public int maxHealth;
     int currentHealth;
@@ -18,6 +20,9 @@ public class PassiveEnemy : MonoBehaviour
     bool turn;
     public float damageCooldown;
     float nextTimeToAttack;
+    public bool boss;
+    public Healthbar bossHealthbar;
+    public TMP_Text bossName;
 
 
     void Start()
@@ -25,6 +30,13 @@ public class PassiveEnemy : MonoBehaviour
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         patrol = true;
+        if (boss)
+        {
+            bossHealthbar.SetMaxHealth(maxHealth);
+            bossName.text = name;
+            bossHealthbar.gameObject.SetActive(true);
+            bossName.gameObject.SetActive(true);
+        }
     }
 
     private void FixedUpdate()
@@ -52,11 +64,20 @@ public class PassiveEnemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        if (boss)
+        {
+            bossHealthbar.SetHealth(currentHealth);
+        }
     }
 
     public void Die()
     {
         Destroy(gameObject);
+        if (boss)
+        {
+            bossHealthbar.gameObject.SetActive(false);
+            bossName.gameObject.SetActive(false);
+        }
     }
     void Flip()
     {
@@ -68,7 +89,7 @@ public class PassiveEnemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.tag == "Player")
+        if (collision.transform.tag == "Player" && Time.time > nextTimeToAttack)
         {
             PlayerMovement player = GameObject.Find("Player").GetComponent<PlayerMovement>();
             player.TakeDamage(damage);

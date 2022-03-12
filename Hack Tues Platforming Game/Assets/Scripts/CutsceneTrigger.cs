@@ -9,7 +9,11 @@ public class CutsceneTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        cutsceneDirector.Play();
-        Destroy(gameObject);
+        if(collision.transform.tag == "Player")
+        {
+            cutsceneDirector.Play();
+            Destroy(gameObject);
+        }
+            
     }
 }

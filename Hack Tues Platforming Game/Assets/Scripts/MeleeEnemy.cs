@@ -16,19 +16,14 @@ public class MeleeEnemy : MonoBehaviour
     public int maxHealth;
     int currentHealth;
     public float jumpForce;
-    public bool boss;
-    public Healthbar bossHealthbar;
-    public TMP_Text bossName;
+    
 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
-        if(boss)
-        {
-            bossHealthbar.SetMaxHealth(maxHealth);
-        }
+        
     }
 
     
@@ -65,20 +60,12 @@ public class MeleeEnemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        if(boss)
-        {
-            bossHealthbar.SetHealth(currentHealth);
-        }
     }
 
     public void Die()
     {
         Destroy(gameObject);
-        if (boss)
-        {
-            bossHealthbar.gameObject.SetActive(false);
-            bossName.gameObject.SetActive(false);
-        }
+        
     }
 
     private void OnCollisionStay2D(Collision2D collision)
