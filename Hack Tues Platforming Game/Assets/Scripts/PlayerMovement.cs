@@ -24,6 +24,9 @@ public class PlayerMovement : MonoBehaviour
     
     private bool isVoid = false;
     public LayerMask Void;
+    public float x;
+    public float y;
+
 
     private bool isSpike = false;
     public LayerMask Spikes;
@@ -42,8 +45,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 Coor = transform.localPosition;
         if (isVoid)
         {
-            Coor.y = 1;
-            Coor.x = -1;
+            Coor.y = y;
+            Coor.x = x;
             rigbod.velocity = new Vector2(rigbod.velocity.x, 0);
         }
         transform.localPosition = Coor;
