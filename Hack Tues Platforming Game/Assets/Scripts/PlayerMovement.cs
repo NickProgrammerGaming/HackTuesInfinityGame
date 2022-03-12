@@ -12,8 +12,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rigbod;
     private float move;
     //GroundCheck
-    public Transform GroundCheckCollider;
-
     private bool isGrounded;
     public Transform groundCheckPos;
     public float groundCheckRadius;
@@ -79,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("Jump", true);
         }
 
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheckCollider.position, groundCheckRadius, Void);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckPos.position, groundCheckRadius, Void);
         if (colliders.Length > 0)
         {
             isVoid = true;
