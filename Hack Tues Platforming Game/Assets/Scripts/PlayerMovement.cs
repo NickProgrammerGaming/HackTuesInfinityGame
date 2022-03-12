@@ -24,58 +24,23 @@ public class PlayerMovement : MonoBehaviour
     
     private bool isVoid = false;
     public LayerMask Void;
-    public float x;
-    public float y;
+    
+    public float Respawnx;
+    public float Respawny;
 
+    public LayerMask checkpointMask;
 
-    private bool isSpike = false;
-    public LayerMask Spikes;
     // Start is called before the first frame update
     void Start()
     {
         rigbod = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
     }
-    void Restart()
-    {
-        isVoid = false;
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheckCollider.position, groundCheckRadius, Void);
-        if (colliders.Length > 0)
-            isVoid = true;
-        Vector3 Coor = transform.localPosition;
-        if (isVoid)
-        {
-            Coor.y = y;
-            Coor.x = x;
-            rigbod.velocity = new Vector2(rigbod.velocity.x, 0);
-        }
-        transform.localPosition = Coor;
-    }
-
-    void Spike_hit()
-    {
-        isSpike = false;
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheckCollider.position, groundCheckRadius, Spikes);
-        if (colliders.Length > 0)
-            isSpike = true;
-        Vector3 Coor = transform.localPosition;
-        if (isSpike)
-        {
-            Coor.y = 1;
-            Coor.x = -1;
-            rigbod.velocity = new Vector2(rigbod.velocity.x, 0);
-            transform.localPosition = Coor;
-        }
-
-    }
     
-
 
     // Update is called once per frame
     void Update()
     {
-        Spike_hit();
-        Restart();
         //Physics2D.IgnoreLayerCollision(7, 11);
         move = Input.GetAxis("Horizontal");
         animator.SetFloat("Running", Mathf.Abs(move));
@@ -113,6 +78,38 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("Jump", true);
         }
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheckCollider.position, groundCheckRadius, Void);
+        if (colliders.Length > 0)
+        {
+            isVoid = true;
+            TakeDamage(1);
+            Die();
+        }
+
+        if(currentHealth <= 0)
+        {
+            Restart();
+        }
+            
+
+    }
+
+    void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void Die()
+    {
+        Vector3 Coor = transform.localPosition;
+        if (isVoid)
+        {
+            Coor.y = Respawny;
+            Coor.x = Respawnx;
+            rigbod.velocity = new Vector2(rigbod.velocity.x, 0);
+        }
+        transform.localPosition = Coor;
     }
 
     public void TakeDamage(int damage)

@@ -175,9 +175,11 @@ MonoBehaviour:
   Void:
     serializedVersion: 2
     m_Bits: 1024
-  Spikes:
+  Respawnx: 0
+  Respawny: 0
+  checkpointMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16384
 --- !u!50 &3388124890462425545
 Rigidbody2D:
   serializedVersion: 4

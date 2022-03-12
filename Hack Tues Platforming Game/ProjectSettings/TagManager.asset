@@ -17,11 +17,11 @@ TagManager:
   - PlayerBullet
   - Enviroment
   - Void
-  - Spikes
+  - 
   - Enemy Bullet
   - Enemy
-  - 
-  - 
+  - Checkpoint
+  - PostProcessing
   - 
   - 
   - 
