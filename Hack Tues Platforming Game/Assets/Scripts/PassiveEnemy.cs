@@ -23,7 +23,10 @@ public class PassiveEnemy : MonoBehaviour
     public bool boss;
     public Healthbar bossHealthbar;
     public TMP_Text bossName;
-
+    float nextTimeToSpeed;
+    float nextTimeToDecideJump;
+    public float jumpForce; //Boss
+    public int jump = 0;
 
     void Start()
     {
@@ -46,7 +49,9 @@ public class PassiveEnemy : MonoBehaviour
 
     private void Update()
     {
-        if(turn || bodyCollider.IsTouchingLayers(ground))
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundDistance, ground);
+
+        if (turn || bodyCollider.IsTouchingLayers(ground))
         {
             Flip();
         }
@@ -59,6 +64,29 @@ public class PassiveEnemy : MonoBehaviour
         if(currentHealth <= 0)
         {
             Die();
+        }
+
+        if(boss)
+        {
+            if(Time.time > nextTimeToDecideJump)
+            {
+                jump = Random.Range(0, 2);
+            }
+
+            speed = Mathf.Clamp(speed, -1200f, 1200f);
+
+            if(Time.time > nextTimeToSpeed)
+            {
+                speed *= 1.5f;
+                nextTimeToSpeed = Time.time + 3f;
+            }
+
+            if(jump == 1)
+            {
+                rb.velocity = Vector2.up * jumpForce;
+                jump = 0;
+                nextTimeToDecideJump = Time.time + 3f;
+            }
         }
     }
     public void TakeDamage(int damage)
