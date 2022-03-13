@@ -11,9 +11,10 @@ public class Checkpoint : MonoBehaviour
             PlayerMovement player = GameObject.Find("Player").GetComponent<PlayerMovement>();
             player.Respawnx = transform.position.x;
             player.Respawny = transform.position.y;
+            Destroy(gameObject);
 
         }
 
-        Destroy(gameObject);
+        
     }
 }

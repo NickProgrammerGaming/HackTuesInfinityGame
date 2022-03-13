@@ -175,7 +175,7 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
-  maxHealth: 3
+  maxHealth: 5
   Void:
     serializedVersion: 2
     m_Bits: 1024

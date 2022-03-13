@@ -25,8 +25,6 @@ public class PassiveEnemy : MonoBehaviour
     public TMP_Text bossName;
     float nextTimeToSpeed;
     float nextTimeToDecideJump;
-    public float jumpForce; //Boss
-    public int jump = 0;
 
     void Start()
     {
@@ -68,12 +66,8 @@ public class PassiveEnemy : MonoBehaviour
 
         if(boss)
         {
-            if(Time.time > nextTimeToDecideJump)
-            {
-                jump = Random.Range(0, 2);
-            }
 
-            speed = Mathf.Clamp(speed, -1200f, 1200f);
+            speed = Mathf.Clamp(speed, -1100f, 1100f);
 
             if(Time.time > nextTimeToSpeed)
             {
@@ -81,12 +75,6 @@ public class PassiveEnemy : MonoBehaviour
                 nextTimeToSpeed = Time.time + 3f;
             }
 
-            if(jump == 1)
-            {
-                rb.velocity = Vector2.up * jumpForce;
-                jump = 0;
-                nextTimeToDecideJump = Time.time + 3f;
-            }
         }
     }
     public void TakeDamage(int damage)

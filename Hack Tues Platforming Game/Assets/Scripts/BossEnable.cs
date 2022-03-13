@@ -9,7 +9,7 @@ public class BossEnable : MonoBehaviour
 
     private void Update()
     {
-        if(boss == null)
+        if(boss == null && bossDoors != null)
         {
             bossDoors.SetActive(false);
         }
