@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Boss : MonoBehaviour
 {
@@ -16,18 +17,30 @@ public class Boss : MonoBehaviour
 	public float bulletGroundSlamOffset;
 	public float burstFireRate;
 	float nextTimeToShoot;
+	public float burstBulletOffset;
+	public TMP_Text bossName;
+
 
 
 	void Start()
     {
+		currentHealth = maxHealth;
+		
+		bossHealthbar.SetMaxHealth(maxHealth);
+		bossName.text = name;
+		bossHealthbar.gameObject.SetActive(true);
+		bossName.gameObject.SetActive(true);
 
-    }
+	}
 
 
     void Update()
     {
-
-    }
+		if (currentHealth <= 0)
+		{
+			Die();
+		}
+	}
 	
 	public void LookAtPlayer()
 	{
@@ -54,7 +67,18 @@ public class Boss : MonoBehaviour
         {
 			if(nextTimeToShoot < Time.time)
             {
-				Shoot();
+				Vector2 shootDirection = player.position - transform.position;
+				shootDirection = new Vector2(shootDirection.x + burstBulletOffset, shootDirection.y + burstBulletOffset);
+				float bulletAngle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
+
+				GameObject instantiatedBullet = Instantiate(bulletPrefab, transform.position, Quaternion.AngleAxis(bulletAngle, Vector3.forward));
+
+				Rigidbody2D bulletRb = instantiatedBullet.GetComponent<Rigidbody2D>();
+
+				if (bulletRb != null)
+				{
+					bulletRb.AddForce(shootDirection * projectileSpeed);
+				}
 				nextTimeToShoot = Time.time + 1f / burstFireRate;
             }
 		}
@@ -74,6 +98,19 @@ public class Boss : MonoBehaviour
 		{
 			bulletRb.AddForce(shootDirection * projectileSpeed);
 		}
+	}
+
+	public void TakeDamage(int damage)
+	{
+		currentHealth -= damage;
+		bossHealthbar.SetHealth(currentHealth);
+
+	}
+
+	public void Die()
+    {
+		bossHealthbar.gameObject.SetActive(false);
+		bossName.gameObject.SetActive(false);
 	}
 
 }
