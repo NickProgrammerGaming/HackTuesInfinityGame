@@ -14,10 +14,8 @@ public class Boss : MonoBehaviour
 	public float projectileSpeed;
 	public GameObject bulletPrefab;
 	public int groundSlamBullets;
-	public float bulletGroundSlamOffset;
 	public float burstFireRate;
 	float nextTimeToShoot;
-	public float burstBulletOffset;
 	public TMP_Text bossName;
 
 
@@ -67,18 +65,7 @@ public class Boss : MonoBehaviour
         {
 			if(nextTimeToShoot < Time.time)
             {
-				Vector2 shootDirection = player.position - transform.position;
-				shootDirection = new Vector2(shootDirection.x + burstBulletOffset, shootDirection.y + burstBulletOffset);
-				float bulletAngle = Mathf.Atan2(shootDirection.y, shootDirection.x) * Mathf.Rad2Deg;
-
-				GameObject instantiatedBullet = Instantiate(bulletPrefab, transform.position, Quaternion.AngleAxis(bulletAngle, Vector3.forward));
-
-				Rigidbody2D bulletRb = instantiatedBullet.GetComponent<Rigidbody2D>();
-
-				if (bulletRb != null)
-				{
-					bulletRb.AddForce(shootDirection * projectileSpeed);
-				}
+				Shoot();
 				nextTimeToShoot = Time.time + 1f / burstFireRate;
             }
 		}
@@ -109,6 +96,7 @@ public class Boss : MonoBehaviour
 
 	public void Die()
     {
+		Destroy(gameObject);
 		bossHealthbar.gameObject.SetActive(false);
 		bossName.gameObject.SetActive(false);
 	}
