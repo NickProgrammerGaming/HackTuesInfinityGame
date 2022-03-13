@@ -19092,7 +19092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43708f83275f3547bcfc5cf859e6b98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Mecho
+  name: Space Grizzly
   maxHealth: 60
   bossHealthbar: {fileID: 2120777583}
   player: {fileID: 768670913}
