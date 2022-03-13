@@ -151,7 +151,7 @@ MonoBehaviour:
   projectileSpeed: 600
   laserPrefab: {fileID: 8628779925098086113, guid: abe4e9baf28eb8b4ca58ea61d05d2aa5, type: 3}
   shootPoint: {fileID: 3388124890642256711}
-  recoilX: -0.03
+  recoilX: -0.1
   recoilY: 0.03
   gunTransform: {fileID: 5598153598679807993}
   returnSpeed: 3
@@ -175,7 +175,7 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
-  maxHealth: 3
+  maxHealth: 5
   Void:
     serializedVersion: 2
     m_Bits: 1024
@@ -185,6 +185,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   playerHealthbar: {fileID: 0}
+  gameOverScreen: {fileID: 0}
+  restartDelay: 3
 --- !u!50 &3388124890462425545
 Rigidbody2D:
   serializedVersion: 4
@@ -230,7 +232,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3388124890642256710}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.553, y: -0.11800003, z: 0}
+  m_LocalPosition: {x: 0.571, y: -0.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3388124890462425540}

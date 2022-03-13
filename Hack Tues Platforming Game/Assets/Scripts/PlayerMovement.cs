@@ -29,6 +29,10 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask checkpointMask;
 
     public Healthbar playerHealthbar;
+    public GameObject gameOverScreen;
+    public float restartDelay;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -90,13 +94,13 @@ public class PlayerMovement : MonoBehaviour
 
         if(currentHealth <= 0)
         {
-            Restart();
+            gameOverScreen.SetActive(true);
         }
             
 
     }
 
-    void Restart()
+    public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
@@ -117,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
     {
         currentHealth -= damage;
         playerHealthbar.SetHealth(currentHealth);
+
     }
 
     public void ChangeScene(int sceneNumber)
